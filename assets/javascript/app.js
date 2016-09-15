@@ -38,7 +38,7 @@ var topics = ["art", "animals", "celebrities", "dance", "decades", "disney", "fo
     
         //var results = $(this).data('topics');
         var APIkey = "&api_key=dc6zaTOxFJmzC&limit=20";
-        var queryURL = "https://crossorigin.me/http://api.giphy.com/v1/gifs/search?q=" + topic + APIkey;
+        var queryURL = "https://crossorigin.me/api.giphy.com/v1/gifs/search?q=" + topic + APIkey;
 
         $.ajax({
             url: queryURL, 
