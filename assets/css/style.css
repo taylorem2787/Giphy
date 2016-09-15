@@ -5,8 +5,7 @@ body {
  	height: 100%;
   	padding: 0px;
   	margin: auto 0;
-  	font-size: 18px;
-  	color: lightsteelblue !important;
+   	color: lightsteelblue !important;
   	text-align: center !important;
 }
 
@@ -17,7 +16,7 @@ body {
 
 #topic-input, {
 	width: 100% !important;
-	max-width: 980px;
+
 }
 
 input, button, .panel-body, .item, #displayGiphy, #addButton {
@@ -31,18 +30,15 @@ input, button, #displayGiphy, #addButton {
 	background-color: snow;
 }
 
-img, button, #displayGiphy {
-	margin: 11px;
-}
-
 img {
 	width: 200px;
 	height: 200px;
+	margin: 11px;
 }
 
 p {
 	color: lightsteelblue !important;
-	font-size: 12px !important;
+	font-size: 10px !important;
 	max-width: 200px !important;
 	margin: 1% !important;
 }
@@ -52,8 +48,8 @@ p {
 }
 
 button {
-	height: 55px;
-	width: 95px;
+	height: 60px;
+	width: 100px;
 }
 .panel-body, .panel-heading {
 	border: 4px solid lightsteelblue !important;
@@ -92,10 +88,8 @@ button {
 	height: 30px;
 }
 #addButton {
-	width: 95px;
-}
-
-.item {
+	width: 120px;
+	font-size: 14px !important;
 }
 
 button:nth-child(1){border: 4px solid red !important;color: red;}
