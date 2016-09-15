@@ -1,11 +1,11 @@
 body {
 	background-color: black !important;
-	background-size: cover;
 	width: 100%;
+	max-width: 1000px !important;
  	height: 100%;
   	padding: 0px;
   	margin: auto 0;
-  	font-size: 24px;
+  	font-size: 18px;
   	color: lightsteelblue !important;
   	text-align: center !important;
 }
@@ -13,9 +13,9 @@ body {
 * {
     position: relative;
     box-sizing: border-box;
-}
+} 
 
-.container, #topic-input, {
+#topic-input, {
 	width: 100% !important;
 	max-width: 980px;
 }
@@ -126,13 +126,7 @@ button:nth-child(25){border: 4px solid blue !important;color: blue;}
 button:nth-child(26){border: 4px solid #4444dd !important;color: #4444dd;}
 button:nth-child(27){border: 4px solid purple !important;color: purple;}
 
-
-
 .item:nth-child(even) {float: left !important;}
 
 .item:nth-child(odd) {float: right !important;}
 
-.container {
-	max-width: 980px;
-  	margin-top: 3%;
-}
