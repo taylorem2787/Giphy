@@ -1,20 +1,43 @@
-//var q - search query term or phrase
-//var limit = //(optional) number of results to return,
-// maximum 100. Default 25.
-//var offset = //(optional) results offset, defaults to 0.
-//var rating = //limit results to those rated (y,g, pg, pg-13 or r).
-//var fmt = //(optional) return results in html or json format 
-//(useful for viewing responses as GIFs to debug/test)
-var topics = ["party hard", "celebrities", "steal yo girl", "fashion", "funny", "animals"];
+//q- search query term or phrase
+//limit = number of results to return, maximum 100. Default 25.
+//offset = results offset, defaults to 0.
+//rating = limit results to those rated (y,g, pg, pg-13 or r).
+//fmt = //return results in html or json format (useful for viewing responses as GIFs to debug/test)
+$(document).ready(function(){
+var topics = ["art", "animals", "celebrities", "dance", "decades", "disney", "food", 
+"funny", "love", "movies", "party hard", "politics", "random", "sports", "steal yo girl", "tupac"];
+
+    function displayButtons(){ 
+
+        $('.button').empty();
+       // $('#gifDiv').empty();
+
+        for (var i = 0; i < topics.length; i++) {   //create one for each topic
+            var b = $('<button>')  
+            b.addClass('topicBtn'); //gives div class 'topic button'
+            b.attr('data-name', topics[i]); 
+            b.text(topics[i]);  
+            $('.button').append(b); 
+        }   
+    }
+
+    $('#addButton').on('click', function(){
+            //$('.button').empty();
+            var topic = $('#topic-input').val().trim();
+            topics.push(topic);
+            displayButtons(); //add new button
+            return false;       
+})
+        displayButtons(); 
+        $(document).on('click', '.topicBtn', displayTopic);
+
 
     function displayTopic(){
-    //ON-CLICK FUNCTION
-    $('button').on('click', function(){
-        var topic = $(this).attr('data-name');
-        // topics.push(topic);
     
-        //var topic = $(this).data('animal');
-        var APIkey = "&api_key=dc6zaTOxFJmzC&limit=12";
+        var topic = $(this).attr('data-name');
+    
+        //var results = $(this).data('topics');
+        var APIkey = "&api_key=dc6zaTOxFJmzC&limit=20";
         var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + topic + APIkey;
 
         $.ajax({
@@ -24,68 +47,57 @@ var topics = ["party hard", "celebrities", "steal yo girl", "fashion", "funny", 
         .done(function(response) {
             console.log(response.data);
             var results = response.data;
-
             for (var i = 0; i < results.length; i++) {
                 var gifDiv = $('<div class="item">')
-                console.log(displayTopic);
+
+                var type = results[i].type;
+                var p1 = $('<p>').text("Type: " + type);
 
                 var rating = results[i].rating;
-                var p = $('<p>').text("Rating: " + rating);
+                var p2 = $('<p>').text("Rating: " + rating);
 
-                var topicImage = $('<img>');
-                topicImage.attr('src', results[i].images.fixed_height.url);
+                var stillImage = $('<img class="gif">');
+                stillImage.attr('src', results[i].images.fixed_width_still.url);
+                gifDiv.append(p1);
+                gifDiv.append(p2);
+                gifDiv.append(stillImage);
+
+                $(gifDiv).data('state', 'still');
+                $(gifDiv).data('stillUrl', results[i].images.fixed_width_still.url);
+                $(gifDiv).data('animatedUrl', results[i].images.fixed_width.url);
+
+
+            $('#gifDiv').prepend(gifDiv);
                 console.log(displayTopic);
-        //gifDiv.append(images.images.fixed_height.url); //render buttons
-                gifDiv.append(p)
-                gifDiv.append(topicImage)
-               // gifDiv.append(results)
-                
-                $('#gifDiv').prepend(gifDiv);
-                console.log(displayTopic);
-            }
-        });
+            $(gifDiv).on("click", imageState);
+
+        }
     });
 }
-    function displayButtons(){ //create buttons
 
-        for (var i = 0; i < topics.length; i++) {   //create one for each topic
-         var b = $('<button>')  //
+    function imageState(event) {
 
-            b.addClass('topicBtn'); //gives div class 'topic button'
-            b.attr('data-name', topics[i]); //attr. data, topics
-            b.text(topics[i]);  //creates in html
-            $('.button').append(b); //
+        var topicState = event.currentTarget;                   //specified div
+        var image = $(topicState).find('img');                  //img variable
+        var stillUrl = $(topicState).data('stillUrl');          //still value variable
+        var animatedUrl = $(topicState).data('animatedUrl');    //animated value variable
+
+    if($(topicState).data('state') === 'still') {
+            $(topicState).data('state', 'animated');
+
+            $(image).attr('src', animatedUrl);                  //change still/animated
+        } 
+    else {
+            $(topicState).data('state', 'still');
+            
+            $(image).attr('src', stillUrl);
         }
     }
-        displayButtons(); 
-        displayTopic();
 
-// displayTopic()
-// $('#gifDiv').empty();
-
-// $('#addGiphy').on('click', function(){
-//     var topic = $('#topic-input').val().trim();
-//     topics.push(topic);
-//     displayButtons();
-//     return false;
-// })
-
-//     $(document).on('click', '.topicBtn', displayTopic);
-//     displayTopic();
+//$(document).on('click', '.topicBtn', displayTopic);
+    
 
 
+}) //END
 
- //ajax call end
-
-         // var rating = response.rating;
-        // var pRating = $('<p>').text("Rating: " + rating);
-        // gifDiv.append(pRating);
-
-        // var source = response.source;
-        // var pSource = $('<p>').text("Source: " + source);
-        // gifDiv.append(pSource);
-
-        // var caption = response.caption;
-        // var pCaption = $('<p>').text("Caption: " + caption);
-        // gifDiv.append(pCaption);
 
