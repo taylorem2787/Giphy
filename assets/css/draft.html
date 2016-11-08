@@ -1,0 +1,116 @@
+//q- search query term or phrase
+//limit = //(optional) number of results to return,
+// maximum 100. Default 25.
+//offset = //(optional) results offset, defaults to 0.
+//rating = //limit results to those rated (y,g, pg, pg-13 or r).
+//fmt = //(optional) return results in html or json format 
+//(useful for viewing responses as GIFs to debug/test)
+$(document).ready(function(){
+var topics = ["art", "animals", "celebrities", "decades", "food", "funny", "party hard", "steal yo girl"];
+
+    function displayButtons(){ 
+
+        $('.button').empty();
+        $('#gifDiv').empty();
+
+        for (var i = 0; i < topics.length; i++) {   //create one for each topic
+            var b = $('<button>')  
+            b.addClass('topicBtn'); //gives div class 'topic button'
+            b.attr('data-name', topics[i]); 
+            b.text(topics[i]);  
+            $('.button').append(b); 
+        }   
+    }
+
+    $('#addButton').on('click', function(){
+            //$('.button').empty();
+            var topic = $('#topic-input').val().trim();
+            topics.push(topic);
+            displayButtons(); //add new button
+            return false;       
+})
+    //$(document).on('click', '.topicBtn', displayTopic);
+        displayButtons(); 
+
+
+    function displayTopic(){
+    
+        var topic = $(this).attr('data-name');
+    
+        //var results = $(this).data('topics');
+        var APIkey = "&api_key=dc6zaTOxFJmzC&limit=9";
+        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + topic + APIkey;
+
+        $.ajax({
+            url: queryURL, 
+            method: 'GET'
+        })
+        .done(function(response) {
+            //console.log(response.data);
+            var results = response.data;
+            console.log(response.data);
+            for (var i = 0; i < results.length; i++) {
+                var gifDiv = $('<div class="item">')
+
+                var type = results[i].type;
+                var p1 = $('<p>').text("Type: " + type);
+
+                var rating = results[i].rating;
+                var p2 = $('<p>').text("Rating: " + rating);
+
+                var stillImage = $('<img class="gif">');
+                stillImage.attr('src', results[i].images.fixed_height_still.url);
+                gifDiv.append(p1);
+                gifDiv.append(p2);
+                gifDiv.append(stillImage);
+
+                $(gifDiv).data('state', 'still');
+                $(gifDiv).data('stillUrl', results[i].images.fixed_height_still.url);
+                $(gifDiv).data('animatedUrl', results[i].images.fixed_height.url);
+
+
+            $('#gifDiv').prepend(gifDiv);
+                console.log(displayTopic);
+            $(gifDiv).on("click", toggleStillImage);
+
+        }
+    });
+}
+
+    function toggleStillImage() {
+
+    // Assign the target div to a variable
+        var topicImage = event.currentTarget;
+
+    // Assign the image to a variable
+        var image = $(topicImage).find('img');
+
+    // Assign the stillUrl value to a variable
+        var stillUrl = $(topicImage).data('stillUrl');  //still value variable
+
+    // Assign the animatedUrl value to a variable
+        var animatedUrl = $(topicImage).data('animatedUrl');    //animated value variable
+
+    if($(topicImage).data('state') === 'still') {
+
+            $(animal).data('state', 'animated');
+
+        // Change the image source to the still image
+            $(image).attr('src', animatedUrl);
+    } 
+    else {
+
+        $(animal).data('state', 'still');
+
+        // Change the image source the animated image
+        $(image).attr('src', stillUrl);
+    }
+}
+
+$(document).on('click', '.topicBtn', displayTopic);
+    //displayTopic();
+
+
+}) //END
+
+
