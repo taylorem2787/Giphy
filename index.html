@@ -2,61 +2,63 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<title>Giphy</title>
 	<!-- Viewport -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-			<!-- Stylesheets -->
-	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- Optional theme -->
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"> -->
 	<!-- jQuery CDN -->
 	<script   src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"></script>
-	<!-- Bootstrap CDN -->
-	<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/darkly/bootstrap.min.css" rel="stylesheet" integrity="sha384-S7YMK1xjUjSpEnF4P8hPUcgjXYLZKK3fQW1j5ObLSl787II9p8RO9XUGehRmKsxd" crossorigin="anonymous">
-	<!-- Latest compiled and minified JavaScript --> 
+	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<script src="assets/javascript/app.js"></script>
-	<title>Giphy</title>
+		<!-- Font Awesome Glyphicons -->
+	<link href="https://fonts.googleapis.com/css?family=Molle:400i|Pacifico" rel="stylesheet"
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
+	<!-- Stylesheets -->
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
-	<body class="container">
-
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="panel panel-default">
-				  	<div class="panel-body">
-				    	<div class="button"><!-- Buttons Populate Here --></div>
-				  	</div>
-				</div>
+<body class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+			  	<div class="panel-body">
+			    	<div class="buttons"><!-- Buttons Populate Here --></div>
+			  	</div>
 			</div>
-		</div>	
-	
-	    <div class="row">
-		    <div class="col-lg-12">
-		         <div class="panel panel-default">
-		            <div class="panel-heading">
-		                <form id="giphy-form">
-    						<label for="topic-input">Add your own topic or sub-topic!</label>
-    						<br>
-    						<input type="text" id="topic-input">
-    						<input id="addButton" type="submit" value="Add Button!">
-  						</form>	
-		            </div>
-		            <div class="panel-body">
-		              <div id="gifDiv"><!-- Gifs Populate Here --></div>
-		           	</div>
-		        </div>
-		    </div>
-		</div>	
+		</div> <!-- COL END -->
+	</div> <!-- ROW END -->
 
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="panel panel-default">
-			  		<div class="panel-footer">
-			  			<img id="giphy" src="assets/images/giphy.gif">
-			  		</div>
-				</div>
+    <div class="row">
+	    <div class="col-lg-12">
+	         <div class="panel panel-default" style="background-color: transparent;">
+	            <div class="panel-heading">
+	                <form id="giphy-form"><br>
+						<label for="topic-input">Add Your Own Catagory!</label>
+						<br>
+						<input type="text" id="topic-input">
+						<input id="addButton" type="submit" value="Add Button!">
+					</form>	
+	            </div>
+	            <div class="panel-body">
+	             	<div id="gifDiv"><!-- Gifs Populate Here --></div>
+	           	</div>
+	        </div>
+	    </div> <!-- COL END -->
+	</div> <!-- ROW END -->
+
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+		  		<div class="panel-footer">
+		  			<img id="giphy" src="assets/images/giphy.gif">
+		  		</div>
 			</div>
-		</div>
-
-
+		</div> <!-- COL END -->
+	</div> <!-- ROW END -->
+	<script src="assets/javascript/app.js"></script>
 </body>
-<script src="assets/javascript/app.js"></script>
 </html>
